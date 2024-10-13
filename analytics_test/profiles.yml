@@ -1,0 +1,15 @@
+analytics_test:
+  outputs:
+    dev:
+      dataset: raw_marketing_data
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: bq-public-key.json
+      location: US
+      method: service-account
+      priority: interactive
+      project: test-analytics-lead-adrian
+      threads: 4
+      type: bigquery
+  target: dev
+

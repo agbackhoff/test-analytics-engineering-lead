@@ -1,0 +1,4 @@
+bq-public-key.json
+target/
+dbt_packages/
+logs/
