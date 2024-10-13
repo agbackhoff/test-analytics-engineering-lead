@@ -1,0 +1,125 @@
+version: 2
+
+sources:
+  - name: raw_marketing_data
+    database: test-analytics-lead-adrian
+    schema: raw_marketing_data
+    tables:
+      - name: original
+        description: "Conjunto de datos crudo del marketing bancario."
+        columns:
+          - name: age
+            description: "La edad del cliente."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: job
+            description: "Tipo de trabajo del cliente."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: marital
+            description: "Estado civil del cliente."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: education
+            description: "Nivel de educación del cliente."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: default
+            description: "Indica si el cliente tiene un crédito en incumplimiento (sí/no)."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: balance
+            description: "Saldo promedio anual del cliente en euros."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: housing
+            description: "Indica si el cliente tiene un préstamo hipotecario (sí/no)."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: loan
+            description: "Indica si el cliente tiene un préstamo personal (sí/no)."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: contact
+            description: "Tipo de comunicación usada para contactar al cliente."
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: day_of_week
+            description: "Último día de contacto de la semana."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: month
+            description: "Último mes de contacto del año."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: duration
+            description: "Duración del último contacto en segundos."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: campaign
+            description: "Número de contactos realizados durante esta campaña."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: pdays
+            description: "Número de días desde el último contacto en una campaña previa."
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: previous
+            description: "Número de contactos realizados antes de esta campaña."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: poutcome
+            description: "Resultado de la campaña de marketing previa."
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string
+
+          - name: y
+            description: "Indica si el cliente suscribió un depósito a plazo fijo (sí/no)."
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: string

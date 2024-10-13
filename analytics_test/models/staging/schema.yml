@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: stg_original
+    description: "Modelo basico para etapa staging de datos fuente"
