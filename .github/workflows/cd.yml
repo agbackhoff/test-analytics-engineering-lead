@@ -1,0 +1,47 @@
+name: dbt Continuous Deployment
+
+on:
+  workflow_run:
+    workflows: ["dbt Continuous Integration"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.6
+
+      - name: Install dbt-core
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-core dbt-bigquery
+      - name: Decode GCP service account key
+        run: |
+          echo "${{ secrets.GCP_KEY }}" | base64 --decode > ${{ runner.temp }}/key.json
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/key.json
+
+      - name: Run dbt debug
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/key.json
+        working-directory: ./analytics_test
+        run: dbt debug
+
+      - name: Install dbt dependencies
+        working-directory: ./analytics_test
+        run: dbt deps
+
+      - name: Deploy dbt models
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/key.json
+        working-directory: ./analytics_test
+        run: dbt run --profiles-dir .
