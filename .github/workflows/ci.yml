@@ -7,12 +7,14 @@ on:
     paths:
       - analytics_test/**
       - .github/workflows/ci.yml
+      - .github/workflows/cd.yml
   pull_request:
     branches:
       - main
     paths:
       - analytics_test/**
       - .github/workflows/ci.yml
+      - .github/workflows/cd.yml
 
 jobs:
   test:
