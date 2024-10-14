@@ -2,3 +2,4 @@ dbtvenv/
 logs/
 .DS_Store
 .git/
+newdbtvenv/

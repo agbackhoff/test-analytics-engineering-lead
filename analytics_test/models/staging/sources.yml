@@ -11,115 +11,196 @@ sources:
           - name: age
             description: "La edad del cliente."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 18
+                  max_value: 100
+                  severity: warn
 
           - name: job
             description: "Tipo de trabajo del cliente."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["admin.", "unknown", "unemployed", "management", "housemaid", "entrepreneur", "student", "blue-collar", "self-employed", "retired", "technician", "services"]
+                  severity: warn
 
           - name: marital
             description: "Estado civil del cliente."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["married", "divorced", "single"]
+                  severity: warn
 
           - name: education
             description: "Nivel de educación del cliente."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["unknown", "secondary", "primary", "tertiary"]
+                  severity: warn
 
-          - name: default
+          - name: '`default`'
             description: "Indica si el cliente tiene un crédito en incumplimiento (sí/no)."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["yes", "no"]
+                  severity: warn
 
           - name: balance
             description: "Saldo promedio anual del cliente en euros."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
 
           - name: housing
             description: "Indica si el cliente tiene un préstamo hipotecario (sí/no)."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["yes", "no"]
+                  severity: warn
 
           - name: loan
             description: "Indica si el cliente tiene un préstamo personal (sí/no)."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["yes", "no"]
+                  severity: warn
 
           - name: contact
             description: "Tipo de comunicación usada para contactar al cliente."
             tests:
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["unknown", "telephone", "cellular"]
+                  severity: warn
 
           - name: day_of_week
             description: "Último día de contacto de la semana."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: string
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 1
+                  max_value: 31
+                  severity: warn
 
           - name: month
             description: "Último mes de contacto del año."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+                  severity: warn
 
           - name: duration
             description: "Duración del último contacto en segundos."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0
+                  severity: warn
 
           - name: campaign
             description: "Número de contactos realizados durante esta campaña."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 1
+                  severity: warn
 
           - name: pdays
             description: "Número de días desde el último contacto en una campaña previa."
             tests:
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: -1
+                  severity: warn
 
           - name: previous
             description: "Número de contactos realizados antes de esta campaña."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: integer
+                  column_type: int64
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0
+                  severity: warn
 
           - name: poutcome
             description: "Resultado de la campaña de marketing previa."
             tests:
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["unknown", "other", "failure", "success"]
+                  severity: warn
 
           - name: y
             description: "Indica si el cliente suscribió un depósito a plazo fijo (sí/no)."
             tests:
-              - not_null
+              - not_null:
+                  severity: warn
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: string
+                  severity: warn
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ["yes", "no"]
+                  severity: warn

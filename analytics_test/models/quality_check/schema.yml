@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: source_original_quality_check
+    description: "Tabla incremental con registro de calidad de datos de tabla 'original'."
+    columns:
+      - name: raw_records
+        description: "Count de todas las filas en la tabla fuente (source)."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: clean_records
+        description: "Count de todas las filas en la tabla limpia (stg)."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: passed_quality_rate
+        description: "Tasa de filas que pasaron las pruebas de calidad."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.95
+              max_value: 1
+      - name: passed_quality_check_percentage
+        description: "Porcentaje de filas que pasaron las pruebas de calidad."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: string
+      - name: calculated_at_timestamp
+        description: "Fecha y hora en la que se calculo la calidad."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp
+      - name: unique_id
+        description: "UUID generado para evitar duplicados en modelo incremental."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: string
