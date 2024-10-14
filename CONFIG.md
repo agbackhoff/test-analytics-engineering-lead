@@ -6,7 +6,7 @@
 
     Este repo contiene el requirments.txt para el virtual environment de python con las librerias necesarias para correr dbt de manera local
 
-2. Creare y activar venv:
+2. Crear y activar venv:
     ```python3 -m venv dbtvenv && source dbtvenv/bin/activate && pip install -r requirements.txt```
 
 3. Descargar bq-public-key.json y colocar en directorio de projecto dbt "test-analytics-engineering/analytics_test"
