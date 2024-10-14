@@ -1,5 +1,7 @@
 # Proyecto Gestión
-Liga del diagrama de flujo de proceso y arquitectura tecnológica: https://app.eraser.io/workspace/64ET1w89yUFGn1CXHjUe?origin=share
+Liga del diagrama de flujo de proceso y arquitectura tecnológica: [app.eraser.io](https://app.eraser.io/workspace/64ET1w89yUFGn1CXHjUe?origin=share)
+
+Liga de Kanban: [Trello](https://trello.com/invite/b/67083c65adedb93282f37422/ATTIf192b0cd806abeedd729a745aea93b9d98387D8E/gestion-optimizacion-pipelines)
 
 ## Entregables esperados:
 
