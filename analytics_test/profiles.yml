@@ -4,7 +4,7 @@ analytics_test:
       dataset: raw_marketing_data
       job_execution_timeout_seconds: 300
       job_retries: 1
-      keyfile: bq-public-key.json
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
       location: US
       method: service-account
       priority: interactive
@@ -12,4 +12,3 @@ analytics_test:
       threads: 4
       type: bigquery
   target: dev
-
