@@ -1,8 +1,8 @@
 name: Scheduled dbt Job
 
 on:
-  schedule:
-    - cron: "0 * * * *" # 7:55 AM UTC
+  # schedule:
+  #   - cron: "0 * * * *" # 7:55 AM UTC
   workflow_dispatch:  # Add this to allow manual triggering
 
 jobs:
